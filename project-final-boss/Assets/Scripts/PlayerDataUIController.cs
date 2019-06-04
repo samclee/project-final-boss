@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerDataUIController : MonoBehaviour
 {
+    private int health = 100;
     public Text hpText;
     private string hpTextPrefix = "HP: ";
     private string spdTextPrefix = "SPD: ";
@@ -18,6 +19,14 @@ public class PlayerDataUIController : MonoBehaviour
     void Update()
     {
         setHP(45);
+    }
+
+    public void Damage(float damageTaken)
+    {
+        if (health > 0)
+        {
+            health -= 5;
+        }
     }
 
     public void setHP(int hp)

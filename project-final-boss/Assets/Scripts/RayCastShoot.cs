@@ -2,11 +2,14 @@
 using System.Collections;
 using UnityEngine;
 
+public enum ShotOrigin { Player, Boss }
+
 public class RaycastShoot : MonoBehaviour
 {
+    public ShotOrigin shotOrigin;
     //TODO: Make some fields serialized for reuse with player and boss.
     // How much damage is applied to an object when it is shot.
-    public int gunDamage;
+    public float gunDamage;
 
     // Controls how often the player can fire their weapon
     public float fireRate = .25f;
@@ -35,63 +38,74 @@ public class RaycastShoot : MonoBehaviour
     // The time at which the player will be allowed to fire again after firing.
     private float nextFire;
 
-    public RaycastShoot()
-    {
-    }
-
     private void Start()
     {
         laserLine = GetComponentsInChildren<LineRenderer>()[0];
         //gunAudio = GetComponent<AudioSource>();
-
-        // Store a reference to our camera, which is a child of our player GameObject
-        fpsCam = GetComponentsInChildren<Camera>()[0];
-
-        // Store where our shot is coming out of
-        gunEnd = GameObject.Find("Gun").transform;
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
-
+        if (shotOrigin == ShotOrigin.Boss && Input.GetKeyDown("space") && Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
-            StartCoroutine(ShotEffect());
-            Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(.5f, .5f, 0));
-            RaycastHit hit;
+            // Boss
+            Shoot();
+        }
+        else if (shotOrigin == ShotOrigin.Player && Input.GetButtonDown("Fire1"))
+        {
+            // Player
+            Shoot();
+        }
+    }
 
-            laserLine.SetPosition(0, gunEnd.position);
+    private void Shoot()
+    {
+        nextFire = Time.time + fireRate;
+        StartCoroutine(ShotEffect());
+        Vector3 rayOrigin = gunEnd.transform.position;
+        RaycastHit hit;
 
-            // Executes if our ray hits something
-            // rayOrigin is where our ray begins (in this case, center of our camera's viewpoint).
-            // Our ray is being cast forward from our camera viewport, hence fpsCam.transform.forward.
-            // For our hit, using the out keyword allows us to store additional information from 
-            // a function, in addition to its return type.
-            // weaponRange is the distance in which we want to cast our ray.
-            if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
+        laserLine.SetPosition(0, gunEnd.position);
+
+        // Executes if our ray hits something
+        // rayOrigin is where our ray begins (in this case, center of our camera's viewpoint).
+        // Our ray is being cast forward from our camera viewport, hence fpsCam.transform.forward.
+        // For our hit, using the out keyword allows us to store additional information from 
+        // a function, in addition to its return type.
+        // weaponRange is the distance in which we want to cast our ray.
+        if (Physics.Raycast(rayOrigin, gunEnd.transform.forward, out hit, weaponRange))
+        {
+            // Cast the second point of our ray to be what we hit
+            laserLine.SetPosition(1, hit.point);
+
+            if (shotOrigin == ShotOrigin.Player)
             {
-                Debug.Log("hit");
-                // Cast the second point of our ray to be what we hit
-                laserLine.SetPosition(1, hit.point);
-
+                BossHealthBarController bossHealth = hit.collider.GetComponent<BossHealthBarController>();
                 // Reference to a health script attached to the collider we hit
-                ShootableBox health = hit.collider.GetComponent<ShootableBox>();
 
                 // If there was a health script attached
-                if (health != null)
+                if (bossHealth != null)
                 {
                     // Call the damage function of that script, passing in our gunDamage variable
-                    health.Damage(gunDamage);
+                    bossHealth.Damage(gunDamage);
                 }
             }
-            else
+            else if (shotOrigin == ShotOrigin.Boss)
             {
-                Debug.Log("no hit");
-                Debug.Log(hit);
-                // Cast our ray to end 50 units forward if we don't hit anything
-                laserLine.SetPosition(1, fpsCam.transform.forward * weaponRange);
+                PlayerDataUIController playerHealth = hit.collider.GetComponent<PlayerDataUIController>();
+                // If there was a health script attached
+                if (playerHealth != null)
+                {
+                    // Call the damage function of that script, passing in our gunDamage variable
+                    playerHealth.Damage(gunDamage);
+                }
             }
+        }
+        else
+        {
+            Debug.Log("no hit");
+            // Cast our ray to end 50 units forward if we don't hit anything
+            laserLine.SetPosition(1, gunEnd.transform.forward * weaponRange);
         }
     }
 

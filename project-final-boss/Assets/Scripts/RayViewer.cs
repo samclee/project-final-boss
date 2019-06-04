@@ -8,20 +8,23 @@ public class RayViewer : MonoBehaviour
 
     private Camera fpsCam;                                // Holds a reference to the first person camera
 
+    public GameObject origin;
 
     void Start()
     {
         // Get and store a reference to our Camera by searching this GameObject and its parents
-        fpsCam = GetComponentsInChildren<Camera>()[0];
+        //fpsCam = GetComponentsInChildren<Camera>()[0];
     }
 
 
     void Update()
     {
         // Create a vector at the center of our camera's viewport
-        Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        //Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+
+        Vector3 lineOrigin = origin.transform.position;
 
         // Draw a line in the Scene View  from the point lineOrigin in the direction of fpsCam.transform.forward * weaponRange, using the color green
-        Debug.DrawRay(lineOrigin, fpsCam.transform.forward * weaponRange, Color.green);
+        Debug.DrawRay(lineOrigin, origin.transform.forward * weaponRange, Color.green);
     }
 }
