@@ -41,14 +41,14 @@ public class RaycastShoot : MonoBehaviour
 
     private void Start()
     {
-        laserLine = GetComponent<LineRenderer>();
+        laserLine = GetComponentsInChildren<LineRenderer>()[0];
         //gunAudio = GetComponent<AudioSource>();
 
         // Store a reference to our camera, which is a child of our player GameObject
         fpsCam = GetComponentsInChildren<Camera>()[0];
 
         // Store where our shot is coming out of
-        gunEnd = GameObject.FindGameObjectWithTag("Player").transform;
+        gunEnd = GameObject.Find("Gun").transform;
     }
 
     private void Update()
@@ -71,11 +71,24 @@ public class RaycastShoot : MonoBehaviour
             // weaponRange is the distance in which we want to cast our ray.
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
+                Debug.Log("hit");
                 // Cast the second point of our ray to be what we hit
                 laserLine.SetPosition(1, hit.point);
+
+                // Reference to a health script attached to the collider we hit
+                ShootableBox health = hit.collider.GetComponent<ShootableBox>();
+
+                // If there was a health script attached
+                if (health != null)
+                {
+                    // Call the damage function of that script, passing in our gunDamage variable
+                    health.Damage(gunDamage);
+                }
             }
             else
             {
+                Debug.Log("no hit");
+                Debug.Log(hit);
                 // Cast our ray to end 50 units forward if we don't hit anything
                 laserLine.SetPosition(1, fpsCam.transform.forward * weaponRange);
             }
