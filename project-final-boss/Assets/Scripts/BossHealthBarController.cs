@@ -10,24 +10,23 @@ public class BossHealthBarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetHP(health);
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetHP(health);
     }
 
     public void Damage(float damageTaken)
     {
         if (health > 0f)
         {
-            health -= 0.1f;
+            health -= damageTaken;
+            setHP(health);
         }
     }
 
-    public void SetHP(float f)
+    public void setHP(float f)
     {
         healthbar.localScale = new Vector3(f, 1f, 1f);
     }

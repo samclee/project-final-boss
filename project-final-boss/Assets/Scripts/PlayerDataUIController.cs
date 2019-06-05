@@ -12,25 +12,25 @@ public class PlayerDataUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        setHP(45);
     }
 
-    public void Damage(float damageTaken)
+    public void Damage(int damageTaken)
     {
         if (health > 0)
         {
-            health -= 5;
+            health -= damageTaken;
+            setHP(health);
         }
     }
 
     public void setHP(int hp)
     {
+        Debug.Log(health);
         hpText.text = hpTextPrefix + hp.ToString() + "%";
     }
 }
