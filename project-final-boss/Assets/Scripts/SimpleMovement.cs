@@ -22,7 +22,7 @@ public class SimpleMovement : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed);
-        Debug.Log(movement);
+        //Debug.Log(movement);
     }
 
     // Update is called once per frame
