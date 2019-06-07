@@ -10,6 +10,8 @@ public class BossShootingController : MonoBehaviour
     public float fireRate = .25f;
     // How far our ray will be cast into the scene.
     public float weaponRange = 50f;
+    // How many milliseconds before boss auto fires again
+    private float coolDown = 4f;
     // The position at which our laser line will begin (empty GameObject).
     public GameObject eye;
     public GameObject player;
@@ -31,10 +33,14 @@ public class BossShootingController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space") && Time.time > nextFire)
+        //Debug.Log(coolDown);
+        coolDown -= Time.deltaTime;
+        if (coolDown < 0)
         {
             Shoot();
+            coolDown = 4f;
         }
+
     }
 
     private void Shoot()
