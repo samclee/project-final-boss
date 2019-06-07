@@ -31,7 +31,6 @@ public class RayViewer : MonoBehaviour
         if (shotOrigin == ShotOrigin.Boss)
         {
             // Aim at player
-            //Vector3 heading = player.transform.position - transform.position;
             Vector3 direction = (player.transform.position - origin.transform.position);
             Debug.DrawRay(lineOrigin, direction * weaponRange, Color.blue);
         }
