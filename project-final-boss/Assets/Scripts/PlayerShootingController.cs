@@ -27,6 +27,7 @@ public class PlayerShootingController : MonoBehaviour
     private void Start()
     {
         laserLine = GetComponentsInChildren<LineRenderer>()[0];
+        fpsCam = GameObject.Find("Main Camera").GetComponent<Camera>();
         //gunAudio = GetComponent<AudioSource>();
     }
 
@@ -53,7 +54,7 @@ public class PlayerShootingController : MonoBehaviour
         // For our hit, using the out keyword allows us to store additional information from 
         // a function, in addition to its return type.
         // weaponRange is the distance in which we want to cast our ray.
-        if (Physics.Raycast(rayOrigin, gunEnd.transform.forward, out hit, weaponRange))
+        if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
         {
             // Cast the second point of our ray to be what we hit
             laserLine.SetPosition(1, hit.point);
@@ -71,7 +72,7 @@ public class PlayerShootingController : MonoBehaviour
         else
         {
             // Cast our ray to end 50 units forward if we don't hit anything
-            laserLine.SetPosition(1, gunEnd.transform.forward * weaponRange);
+            laserLine.SetPosition(1, fpsCam.transform.forward * weaponRange);
         }
     }
 
