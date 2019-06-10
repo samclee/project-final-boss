@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerDataUIController : MonoBehaviour
@@ -21,16 +22,17 @@ public class PlayerDataUIController : MonoBehaviour
 
     public void Damage(int damageTaken)
     {
-        if (health > 0)
+        health -= damageTaken;
+        setHP(health);
+
+        if (health < 0)
         {
-            health -= damageTaken;
-            setHP(health);
+            SceneManager.LoadScene("GameScene");
         }
     }
 
     public void setHP(int hp)
     {
-        Debug.Log(health);
         hpText.text = hpTextPrefix + hp.ToString() + "%";
     }
 }

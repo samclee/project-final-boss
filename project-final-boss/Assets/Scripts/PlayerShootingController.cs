@@ -24,11 +24,17 @@ public class PlayerShootingController : MonoBehaviour
     // The time at which the player will be allowed to fire again after firing.
     private float nextFire;
 
+    // Plays sound
+    private AudioSource[] Sources;
+
     private void Start()
     {
         laserLine = GetComponentsInChildren<LineRenderer>()[0];
         fpsCam = GameObject.Find("Main Camera").GetComponent<Camera>();
         //gunAudio = GetComponent<AudioSource>();
+        Cursor.visible = false;
+
+        Sources = GetComponents<AudioSource>();
     }
 
     private void Update()
@@ -41,6 +47,8 @@ public class PlayerShootingController : MonoBehaviour
 
     private void Shoot()
     {
+        Sources[0].Play();
+
         nextFire = Time.time + fireRate;
         StartCoroutine(ShotEffect());
         Vector3 rayOrigin = gunEnd.transform.position;
@@ -67,6 +75,7 @@ public class PlayerShootingController : MonoBehaviour
             {
                 // Call the damage function of that script, passing in our gunDamage variable
                 bossHealth.Damage(gunDamage);
+                Sources[1].Play();
             }
         }
         else

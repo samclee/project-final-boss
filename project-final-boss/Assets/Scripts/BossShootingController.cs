@@ -24,11 +24,15 @@ public class BossShootingController : MonoBehaviour
     private LineRenderer laserLine;
     // The time at which the player will be allowed to fire again after firing.
     private float nextFire;
+    public Material color;
+    public AudioClip clip;
+    public GameObject model;
 
     private void Start()
     {
         laserLine = eye.GetComponent<LineRenderer>();
-        //gunAudio = GetComponent<AudioSource>();
+        gunAudio = GetComponent<AudioSource>();
+        laserLine.material = color;
     }
 
     private void Update()
@@ -79,6 +83,8 @@ public class BossShootingController : MonoBehaviour
             // Cast our ray to end 50 units forward if we don't hit anything
             laserLine.SetPosition(1, direction * weaponRange);
         }
+        gunAudio.PlayOneShot(clip);
+        model.GetComponent<ChickenAnimation>().AnimateShoot();
     }
 
     private IEnumerator ShotEffect()
