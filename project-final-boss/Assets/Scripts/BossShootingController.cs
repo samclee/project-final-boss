@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossShootingController : MonoBehaviour
 {
     // How much damage is applied to an object when it is shot.
-    private int gunDamage = 15;
+    private int gunDamage = 20;
     // How far our ray will be cast into the scene.
     private float weaponRange = 50f;
     // How many seconds before boss auto fires again
