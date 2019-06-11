@@ -158,7 +158,8 @@ Comments from playtesters:
 * John: Mouse sensitivity was too high, he was facing walls more often than the chicken. The end screen at the time was just a blank screen as well, so that was very abrupt. Altogether, a very disorienting experience.
 * Cindy: The mouse sensitivity is too high. The music is nice and she really liked the stylized design of the player's HP.
 * Jeff: Also thought that the mouse sensitivity was too high. Can't tell when he's successfully hitting the chicken. Also, for some reason, fell out of the arena multiple times by phasing through the walls.
-* Devan:
+* Daisy: Thought the colors were kinda cool. Enjoyed the music. She liked the sliding, it made the game more difficult to play (for a small game, giving the player something extra to manage is a good thing).
+* Le: Mouse sensitivity is too high, gives her a slight headache. It's fun when she's just sliding forwards and backwards without moving the mouse. She noticed that the laser came out of the chicken's mouth and that the chicken looked mad.
 
 **Movement was a hit or miss. Some people enjoyed the sliding, others felt uncertain about it. A couple people mentioned that the shooting seemed buggy, either due to aim or length. Audio in general was very much enjoyed. Noticed that Windows users had a really tough time with the mouse sensitivity. Realized that since I was mostly testing with the school Macs, which had really low mouse tracking speeds by default, I didn't notice how wildly the camera moved.**
 
