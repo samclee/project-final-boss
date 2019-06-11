@@ -50,9 +50,7 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 *Chicken Laser* - While Sam W. coded the laser, I moved it into the chicken's mouth and changed its color. The move to the mouth suggests to the player that the laser came out of the chicken's mouth, instead of a random spot nearby the chicken. I changed the color of the laser from neon pink to neon red because the player also had a neon pink laser, causing it to be confusing to differentiate player and chicken lasers. [Color change in script](https://github.com/samclee/project-final-boss/blob/b48bd6b24c83216948588ef6b7dfac39da64e38f/project-final-boss/Assets/Scripts/BossShootingController.cs#L35)
 
-
-
-**Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
+**The choice of colors leads to an arcade-ish vibe that's about speed and action. The heavy use of black in the chicken's coloring and the graph-like patterning of the walls makes the world feel more like a digital one, a lot like Tron. That, combined with the sliding moving mechanics, makes the game as a whole feel like a fast-paced game that never stops (because you literally can't stop).**
 
 ## Input
 
@@ -146,9 +144,18 @@ The sound style is meant to be exciting and provide visceral feedback for the pl
 
 ## Gameplay Testing
 
-**Add a link to the full results of your gameplay tests.**
+Comments from playtesters:
+* Jack: The shooting didn't feel accurate, like it wasn't shooting into the middle of the screen. Wasn't sure if the chicken was doing anything. (At the time, the chicken wasn't moving and the laser was the same color as the player's, so it was hard to tell)
+* Michael: Shooting seems buggy, would prefer an ability to jump instead of speed boosting. Enjoyed the quick pace of the movement though and really liked the music.
+* Aleah: The movement reminded her of an older Nintendo Playstation game (she mentioned specifically Thousand Arms). She liked the movement. She didn't have any particular criticisms other than that the mouse cursor was visible and distracted her from the UI cursor. Also suggested adding a ceiling.
+* Tiange: Music reminds her a lot of pokemon. The chicken (she called it a penguin) was really cute and the music was cool. When asked about the movement, she said that it was *unique*, but couldn't decide if that was a good or bad thing.
+* Andrew: The camera swings around so quickly, the mouse sensitivity seems very high. That, combined with the quick movement, induced some motion sickness. However, he thinks that the craziness would be fun for other people.
+* John: Mouse sensitivity was too high, he was facing walls more often than the chicken. The end screen at the time was just a blank screen as well, so that was very abrupt. Altogether, a very disorienting experience.
+* Cindy: The mouse sensitivity is too high. The music is nice and she really liked the stylized design of the player's HP.
+* Jeff: Also thought that the mouse sensitivity was too high. Can't tell when he's successfully hitting the chicken. Also, for some reason, fell out of the arena multiple times by phasing through the walls.
+* Devan:
 
-**Summarize the key findings from your gameplay tests.**
+**Movement was a hit or miss. Some people enjoyed the sliding, others felt uncertain about it. A couple people mentioned that the shooting seemed buggy, either due to aim or length. Audio in general was very much enjoyed. Noticed that Windows users had a really tough time with the mouse sensitivity. Realized that since I was mostly testing with the school Macs, which had really low mouse tracking speeds by default, I didn't notice how wildly the camera moved.**
 
 ## Narrative Design
 
