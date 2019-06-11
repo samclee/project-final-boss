@@ -5,19 +5,17 @@ using UnityEngine;
 public class BossShootingController : MonoBehaviour
 {
     // How much damage is applied to an object when it is shot.
-    public int gunDamage;
-    // Controls how often the player can fire their weapon
-    public float fireRate = .25f;
+    private int gunDamage = 15;
     // How far our ray will be cast into the scene.
-    public float weaponRange = 50f;
-    // How many milliseconds before boss auto fires again
+    private float weaponRange = 50f;
+    // How many seconds before boss auto fires again
     private float coolDown = 4f;
     // The position at which our laser line will begin (empty GameObject).
     public GameObject eye;
     public GameObject player;
     public Transform gunEnd;
     // Used to determine how long we want the laser to remain visible in the
-    // game view once the player has fired.
+    // game view once the boss has fired.
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
     // A reference to an AudioSource for our gunshot sound effect
     private AudioSource gunAudio;
@@ -49,7 +47,6 @@ public class BossShootingController : MonoBehaviour
 
     private void Shoot()
     {
-        nextFire = Time.time + fireRate;
         StartCoroutine(ShotEffect());
         Vector3 rayOrigin = gunEnd.transform.position;
         RaycastHit hit;

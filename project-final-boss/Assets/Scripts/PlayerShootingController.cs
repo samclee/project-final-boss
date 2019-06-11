@@ -6,11 +6,11 @@ public class PlayerShootingController : MonoBehaviour
 {
     //TODO: Make some fields serialized for reuse with player and boss.
     // How much damage is applied to an object when it is shot.
-    public float gunDamage;
+    private float gunDamage = 0.05f;
     // Controls how often the player can fire their weapon
-    public float fireRate = .75f;
+    private float fireRate = .25f;
     // How far our ray will be cast into the scene.
-    public float weaponRange = 60f;
+    private float weaponRange = 10f;
     // The position at which our laser line will begin (empty GameObject).
     public Transform gunEnd;
     // A reference to our first person camera.
@@ -65,6 +65,7 @@ public class PlayerShootingController : MonoBehaviour
         // weaponRange is the distance in which we want to cast our ray.
         if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
         {
+            Debug.Log(hit.collider.name);
             // Cast the second point of our ray to be what we hit
             laserLine.SetPosition(1, hit.point);
 
@@ -81,7 +82,7 @@ public class PlayerShootingController : MonoBehaviour
         }
         else
         {
-            // Cast our ray to end 50 units forward if we don't hit anything
+            // Cast our ray to end weaponRange units forward if we don't hit anything
             laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
         }
     }
