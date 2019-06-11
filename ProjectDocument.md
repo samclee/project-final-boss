@@ -55,8 +55,76 @@ You should replay any **bold text** with your own relevant information. Liberall
 **Add an entry for each platform or input style your project supports.**
 
 ## Game Logic
+*Game States*:
+* *TitleScene*: The first game state is the title scene. Upon pressing the
+  “Begin” button, the player is taken to the main GameScene.
+* *GameScene*: The scene in which all of our gameplay takes place. As outlined
+  above, it is here that the player has the affordances of shooting, boosting,
+  and moving to work towards defeating the Chicken. Upon depleting all of the
+  Chicken’s health, the player is taken to the GameWin Scene. If the player’s
+  health reaches 0, they’re taken to the GameOver Scene. The player has no
+  option to return to the title scene.
+* *GameWin*: The player is greeted with a congratulatory message, and given the
+  option to replay the boss fight with the click of a button prompt.
+* *GameOver*: The player is greeted with a message, and given the option to
+  retry the boss fight with the click of a button prompt.
 
-**Document what game states and game data you managed and what design patterns you used to complete your task.**
+*Game Data*:
+* *Player Health*: The player begins with 100% health. Each time the player is
+  hit by the Chicken’s laser, their health is decremented by 20%. This is
+  communicated to the player through text reading “HP: ___%” in the lower left
+  hand corner of the player’s point of view.
+* *Boss (Chicken) Health*: The Boss begins with 100% health. Each time the
+  player is hit by the Chicken’s laser, their health is decremented by 5%. This
+  is communicated to the player through the BossHealthBarCanvas: a large, red,
+  horizontal bar in the top of the GameScene UI. 
+
+*Design Patterns*:
+* *Command Pattern*: For the sake of the relatively limited scope of our
+  project’s game systems, and since there only exist two primary interacting
+  entities, I chose to use a pseudo-Command Pattern. This was roughly based off
+  of Programming Exercise 1, and the several different abilities offered to the
+  Captain. 
+    * *Player*:
+        * *Movement*: Our player’s movement is managed by the SimpleMovement
+          script
+        * *Camera*: The player’s first-person camera is managed by the
+          CameraMouse script.
+        * *Shooting*: The player’s laser-shooting mechanic is managed by the
+          PlayerShootingController script, which [uses raycasts to detect
+          colliders](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/PlayerShootingController.cs#L66)
+          that it intersects with, simulating a laser. 
+        * *Health*: The player’s health is managed by the
+          PlayerDataUIController, which exists on a child GameObject of the
+          Player object. Its public method,
+          [Damage](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/PlayerDataUIController.cs#L23),
+          is [invoked by the
+          BossShootingController](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/BossShootingController.cs#L75)
+          when a laser connects.
+    * *Boss (Chicken)*:
+        * *Movement*: The boss’s movement is managed by the ChickenAnimation
+          script
+        * *Shooting*: The boss’s [laser-shooting
+          mechanic](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/BossShootingController.cs#L65)
+          is managed by the BossShootingController script. For a simple AI, this
+          controller makes our boss [fire its laser every 4
+          seconds](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/BossShootingController.cs#L40).
+        * *Health*: The boss’s health is managed by the BossHealthBarController,
+          which exists on a child GameObject of the Boss object. Its public
+          method,
+          [Damage](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/BossHealthBarController.cs#L21),
+          much like the player’s, is [invoked by the
+          PlayerShootingController](https://github.com/samclee/project-final-boss/blob/c2cfa65451ea3c973905825218e00af037aca1d5/project-final-boss/Assets/Scripts/PlayerShootingController.cs#L79)
+          when a laser connects.
+    * *Explanation/ Design Process*:
+        * I originally attempted to take full advantage of the reusability of
+          the command pattern by having the player and boss utilize the same
+          laser-shooting script, as well as the same health script, but later
+          decided to separate them for the sake of the Single-Responsibility
+          Principle. If, however, we expanded upon this project, we could’ve
+          reused our PlayerShootingController for additional players, and our
+          BossShootingController for additional sub-enemies.
+
 
 # Sub-Roles
 
@@ -87,5 +155,27 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 
 ## Game Feel
-
-**Document what you added to and how you tweaked your game to improve its game feel.**
+Since our game revolves entirely around the interactions between the player and
+the boss, and my main contribution was the shooting logic, I decided to
+primarily tweak aspects of that in an iterated approach to improve game feel. By
+focusing on making the shooting interactions more varied and deliberate, I
+believe that the overall replay-ability and game feel will be improved.
+Originally, we planned to have the player and boss have the ability to shoot
+each other from location in our arena. This proved to be a minor issue, since we
+wanted to emphasize and incentivize smooth and constant movement around the
+arena. For this reason, I thought it would make more sense to force the player
+to approach the chicken in close proximity to deal damage. Thus, I reduced the
+player weapon range to a fraction of what it was before, as well as also
+reducing the chicken’s laser range such that it always aimed towards the player,
+but could only hit them within a smaller radius. This way, the player could be
+damaged if they stayed close to the chicken for an extended period of time, but
+could utilize their boost to weave in and out and develop and pattern of safely
+dealing damage with the right timing. To further incentivize tight timing and
+risks, I further increased the player’s fire rate so they could just barely
+shoot the chicken twice before moving or boosting out of its fire range. To
+continue with the idea of incentivizing fast-paced gameplay and risk-taking, the
+boss’s shooting mechanics only allow its laser to reach the player within a
+certain radius, so the player can repeatedly deal damage to the chicken if they
+keep moving in such a way that they stay directly behind the chicken. Our
+intentionally-slippery movement makes this a challenge, but a definite
+possibility for players who may aim for speed over safety.
