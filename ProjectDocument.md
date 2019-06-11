@@ -174,7 +174,7 @@ Comments from playtesters:
 
 ## Narrative Design
 
-**oDocument how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
+During our first brainstorming session as a team, we noticed that most of the group is graduating and thus we wanted to make a game that reflects this milestone. Thus, this game was inspired by leaving our undergraduate stay at the University of California, Davis. Like the player, we've spent the past several years trying to overcome the obstacle of university, which in the game is represented by a Chicken model to convey the emotion of "fear". Our movement was never halting (and thus movement in the game is similar to skating rather than walking), our inertia unforgiving, and our visuals  absurd, but we created moments to carry with us beyond just our undergraduate careers. These feelings were reflective in the game design choices was made to convey these emotions. 
 
 ## Press Kit and Trailer
 
