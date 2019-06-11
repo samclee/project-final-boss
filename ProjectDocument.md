@@ -38,7 +38,16 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 ## Movement/Physics
 
-**Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your own movement scripts that do not use the phyics system?**
+**player movement** - The player movement for the game fits our theme: facing off against a large challenge with no time to breathe. This was inspired by all of us graduating. The movement, once started, continues at the same speed in the same direction until other directional input is received. This movement was also inspired by other boss battles, such as the final boss in "Kirby Star Allies" and the rail-shooting boss from "Super Mario Sunshine". While brainstorming about the project, we considered having the player on rails the entire time. We thought this idea, while fun, could obfuscate our central theme of facing off alone against a large opponent. The idea of being on rails could thematically fit, as college is often a track that forces you along regardless of your decisions, but there was more agency (and fear) instilled in the player when given the option to navigate in whichever direaction they chose. 
+
+Technically, this was accomplished with a script inspired by the `playerMovement.cs` script from the Obscura project earlier in the quarter. While that script took the horizontal and vertical input and set it to the direction of the player, this one checks for horizontal and vertical input, and then sets the player's direction to move in that direction (while the speed remains constant). This only allows for eight movement directions -- up, down, left, right, and each intermediate one if two keys are held down. This allows for a 'make your own rail' skating feeling of movement, fast with quick changes in direction, good for avoiding laser hits. 
+
+
+**collisions** - All collisions in this game are standard, with no adjustments. Each object has a collider, and the player will not move if against an object (but, the player will keep their speed when they change direction -- this is done so the player wont slow down or stop once hitting a wall) This change was made to emphasize movement, as fancy collisions were unncessary to the vision of the game. 
+
+**Lasers** - Each laser was done using a ray cast, so it was not invovled in my role of movement / physics. 
+
+**Mouse Look** For this role, I coordinated with Bayan during our first playtest to come up with the best ways to combine our scripts, as I had done movement and she had done input and mouse look. We decided the movement and perspective of the player should be first person, with no inversion done to the mouse input direction. 
 
 ## Animation and Visuals
 
@@ -169,9 +178,14 @@ Comments from playtesters:
 
 ## Press Kit and Trailer
 
-**Include links to your presskit materials and trailer.**
+**Game Trailer** - https://youtu.be/drgOPesCuJU
+**Press Kit** - https://jwhop.itch.io/project-final-boss password: final_project
 
-**Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
+Important in starting the trailer for this game was setting the game's tone. To accomplish this, I overlayed a hearbeat sound effect with a camera panning down to expose the boss. Once the boss shot at the player, the movement started as well as the music. This was done to 'hook' the player in, providing a moment of stillness before the action began. 
+
+From there, we have several clips displaying movement and shooting mechanics. The clips progress logically, from initial movement, to avoiding enemy attacks, to developing a strategy, and finally carrying out a strategy to attack and win the game. To better illustrate this, each clip had an overlayed text to further explain how the game worked. 
+
+The press kit used a popular independent game distribution system itch.io to showcase the game. There, we posted a link to download an executeable of the game, and included screenshots to show different angles of the boss (implying movement) as well as screenshots with the laser to show the combat system.
 
 
 
