@@ -54,9 +54,14 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 ## Input
 
-**Describe the default input configuration.**
+In this role, I was in charge of designing the game movement controllers. As a team, we discussed the most appropriate input for our game and we decided to make it from a first person perspective. This decision has been made for two main reasons. The first: given the intended narrative of the game, the main character of the game is the player themselves. So it made most sense to have it as a first person perspective. This also allowes the player to feel they're representing themselves. <br> 
+And the second: given the shape and design of the level (round), and the boss in the middle, having the player's character in third perspective could be redundant visually because of the size of the battle stage. The first person perspective makes it way easier aiming, since this is our main mechanic for shooting. Also, we did not want to confuse the players on which character they control, given the fact there is only two characters (player + boss). 
 
-**Add an entry for each platform or input style your project supports.**
+Technically, I was responsible for writing a script to control the camera by the mouse. This has gone through several changes. My main difficulty was to get it correctly on the player's object to make it feel from a first person perspective. There are 2 major Vector variables: mouseLook, which tracks how much movement the camera made to add it later to the input (increment), and smooth, which helps making the movement smoother. There are 2 other variables for easy configuration: sensitivity and smoothing. To make the movement, first we get the moevement of the mouse (change of x and y), it's then multiplied by the sensitivity and smoothing values, and then the new values is used for transformation  of the axies.
+
+Following a (Youtube)[https://www.youtube.com/watch?v=bVo0YLLO43s] tutorial, I tried to add a "zoom in/out" functionality to allow the players to zoom in and out to get near and far from the boss as shown (here)[https://github.com/samclee/project-final-boss/blob/eb4c869d6ee13e35850d532a7a89e56c3d25ec3a/project-final-boss/Assets/Scripts/CameraOrbit.cs#L48], however, after testing, this feature was redundant (no one used it), and it was difficult to adapt to by the players because the mouse had too many options (rotating the camera, shooting, and zooming in/out), so I decided to remove it. 
+
+Last but not least, after testing, we realized playtesters had some trouble with controlling the camera, especially because of the sensitivity. Luckily, since the sensitivity it's just a variable, the issue has been fixed by increasing the variables number only as shown (here)[https://github.com/samclee/project-final-boss/blob/eb4c869d6ee13e35850d532a7a89e56c3d25ec3a/project-final-boss/Assets/Scripts/CameraMouse.cs#L10].
 
 ## Game Logic
 *Game States*:
