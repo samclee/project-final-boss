@@ -2,13 +2,15 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+**Do you hate chicken? Do you love neon and cyberpunk-ish themes? Then this is the game for you!! With awesome, handpicked music and sound effects chosen by our team, you can slide around in a giant black box and shoot lasers at the hated, intensely neon blue chicken. But watch out! The chicken may have it's own lasers...**
 
 ## Gameplay explanation ##
 
-**In this section, explain how the game should be played. Treat this like a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
+**The goal is to kill the chicken before it can kill YOU! Slide around to dodge the chicken's lasers and shoot at it as fast as you can to win!**
 
-
+**Movement: Use WASD or ARROW KEYS to slide around!
+Lasers: Use the MOUSE to aim and click the PRIMARY MOUSE BUTTON to shoot!
+Speed boost: Press SPACE to increase your speed!**
 
 
 # Main Roles #
@@ -34,7 +36,15 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 ## Animation and Visuals
 
-**List your assets including their sources, and licenses.**
+*Chicken* - The chicken consists of a variety of spheres, manipulated and transformed to represent the different parts of a chicken. I did use some chicken images as a reference. It was created with Maya. I did make a couple different versions. They look identical to each other, but the grouping of the objects is different. The default textures are replaced by textures I made in Unity. [Chicken Model](https://github.com/samclee/project-final-boss/blob/master/project-final-boss/Assets/Models/chicken.fbx)
+
+*Textures* - I made most of them, as all I wanted were really simple and extremely neon colors. The team often mentioned a desire for a cyperpunk aesthetic, so I attempted it. It turned out really well, in my opinion. I did use a [texture](https://www.pinterest.com/pin/759630662124096867/) that I modified in photoshop for the walls and floors. [Materials folder](https://github.com/samclee/project-final-boss/tree/master/project-final-boss/Assets/Materials), [Modified image](https://github.com/samclee/project-final-boss/blob/master/project-final-boss/Assets/Images/867add3880a341a39051f5c1588f26ef.jpg)
+
+*Animations* - I created a couple animations for the chicken in Maya. There's a looping idle animation where the chicken bobs a bit and flaps its wings. I also created an attack animation. It has a much larger bob (it floats up higher), the eyebrows draw into a frown, the beaks open, and the wings flap harder. For a short while, the eyebrows remain drawn together even after the mouth closes, before settling back into a neutral position. The attack animation plays as soon as the chicken fires a laser at the player. [Idle animation](https://github.com/samclee/project-final-boss/blob/master/project-final-boss/Assets/Animations/chickenIdle.fbx), [Attack animation](https://github.com/samclee/project-final-boss/blob/master/project-final-boss/Assets/Animations/chickenAttack.fbx), [Animation Script](https://github.com/samclee/project-final-boss/blob/b48bd6b24c83216948588ef6b7dfac39da64e38f/project-final-boss/Assets/Scripts/ChickenAnimation.cs#L25)
+
+*Chicken Laser* - While Sam W. coded the laser, I moved it into the chicken's mouth and changed its color. The move to the mouth suggests to the player that the laser came out of the chicken's mouth, instead of a random spot nearby the chicken. I changed the color of the laser from neon pink to neon red because the player also had a neon pink laser, causing it to be confusing to differentiate player and chicken lasers. [Color change in script](https://github.com/samclee/project-final-boss/blob/b48bd6b24c83216948588ef6b7dfac39da64e38f/project-final-boss/Assets/Scripts/BossShootingController.cs#L35)
+
+
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
 
