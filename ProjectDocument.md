@@ -8,9 +8,9 @@
 
 **The goal is to kill the chicken before it can kill YOU! Slide around to dodge the chicken's lasers and shoot at it as fast as you can to win!**
 
-**Movement: Use WASD or ARROW KEYS to slide around!
-Lasers: Use the MOUSE to aim and click the PRIMARY MOUSE BUTTON to shoot!
-Speed boost: Press SPACE to increase your speed!**
+**Movement: Use WASD or ARROW KEYS to slide around!**
+**Lasers: Use the MOUSE to aim and click the PRIMARY MOUSE BUTTON to shoot!**
+**Speed boost: Press SPACE to increase your speed!**
 
 
 # Main Roles #
