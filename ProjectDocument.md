@@ -28,7 +28,13 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 ## User Interface
 
-**Describe your user interface and how it relates to gameplay. This can be done via the template.**
+*Font Choice* - As UI designer, I wanted to create interfaces that conveyed information beyond mere numerical values. Since the theme of our game is “graduation,” I specifically wanted to communicate a juxtaposition between old and new, where the theme itself emerged from the dissonance between two aesthetics. For the main menu I used an elegant serif font to evoke classical ideas of classical pomp and circumstance, but for the game I used a blocky pixel font to conjure images of classic arcade games. This contrast serves as a visual analogy to the contrast our team feels as new graduates; we are expected to continue expressing our quirky uniqueness while existing next to standard uniformity.
+
+*Player Health Indicator* - The player’s health meter has nuances besides the font choice as well. As one may notice, the text is not flush against the screen, it is angled in such a way that it points to the top-right of the screen. This was done to achieve certain effects. A specific detail I wanted to avoid was labeling the value “Player HP,” so I searched for ways to imply that visually. By angling it as I did, I tried to mimic the visual style of a heads-up display, the kind that one would see in a mech or in the Iron Man movies. The player should intuitively know that the value displayed belongs to themself. In addition, by placing the display near the bottom of the screen, it leverages the idea of perspective to convey that it is closer, and therefore, associated with the player. [Player Health Indicator Script](https://github.com/samclee/project-final-boss/blob/master/project-final-boss/Assets/Scripts/PlayerDataUIController.cs)
+
+*Boss Health Indicator* - I had an opposite approach with the enemy health bar. By staying flat at the top of the screen, the enemy health bar gives the sense that the value is far away, belonging to an entity that is not the player. Coloring it red also implicitly establishes an air of aggression or threat, and the player is naturally inclined to perform actions that diminish the bar. An important detail is also the manner in which the health bar decreases. Instead of a standard right-to-left approach, I wanted feedback that emphasized how long the health bar was, and thus, how threatening the boss itself was. By having the decreasing from both ends towards the center, the boss health bar appears to be much larger, remaining an imposing line even as health is chipped away. This, in turn, makes the player feel as if they are defeating something powerful and imposing. [Boss Health Indicator script](https://github.com/samclee/project-final-boss/blob/master/project-final-boss/Assets/Scripts/BossHealthBarController.cs)
+
+*Reticle* - there is the reticle for the player’s laser. Much like the font choice for the player HP, the reticle is purposefully blocky and “game-y” looking. While a smaller, thinner dot reticle akin to those found in Call of Duty and other first person shooters would be more beneficial, it would also imply some element of malice on the player character’s part. By using a cartoon reticle, it implies that player character is only participating in the game for fun.
 
 ## Movement/Physics
 
@@ -130,11 +136,13 @@ You should replay any **bold text** with your own relevant information. Liberall
 
 ## Audio
 
-**List your assets including their sources, and licenses.**
+1. "sfx_exp_short_hard8" from [The Essential Retro Video Game Sound Effects Collection](https://opengameart.org/content/512-sound-effects-8-bit-style) (Creative Commons)
+2. "sfx_wpn_laser7" from [The Essential Retro Video Game Sound Effects Collection](https://opengameart.org/content/512-sound-effects-8-bit-style) (Creative Commons)
+3. "Rapid2" from [PeriTune](https://soundcloud.com/sei_peridot/rapid2) (Attribution 4.0 International (CC BY 4.0) )
 
-**Describe the implementation of your audio system.**
+*Audio System* - The audio system uses an array of Audio Sources loaded onto the player. Whenever the player shoots or lands a direct hit they are aware and can trigger the appropriate sound. [Audio Source array](https://github.com/samclee/project-final-boss/blob/1d1654893125c5630260d3214fdf6159ac0ebb1d/project-final-boss/Assets/Scripts/PlayerShootingController.cs#L37)
 
-**Document the sound style.** 
+The sound style is meant to be exciting and provide visceral feedback for the player's actions.
 
 ## Gameplay Testing
 
