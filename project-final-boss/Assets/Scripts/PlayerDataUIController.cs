@@ -27,7 +27,7 @@ public class PlayerDataUIController : MonoBehaviour
 
         if (health < 0)
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("GameOver");
         }
     }
 

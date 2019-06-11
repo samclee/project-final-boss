@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BossHealthBarController : MonoBehaviour
@@ -19,10 +20,11 @@ public class BossHealthBarController : MonoBehaviour
 
     public void Damage(float damageTaken)
     {
-        if (health > 0f)
+        health -= damageTaken;
+        setHP(health);
+        if (health < 0f)
         {
-            health -= damageTaken;
-            setHP(health);
+            SceneManager.LoadScene("GameWin");
         }
     }
 

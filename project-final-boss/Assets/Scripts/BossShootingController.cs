@@ -10,11 +10,13 @@ public class BossShootingController : MonoBehaviour
     public float fireRate = .25f;
     // How far our ray will be cast into the scene.
     public float weaponRange = 50f;
+    private Vector3 playerPos;
     // How many milliseconds before boss auto fires again
     private float coolDown = 4f;
     // The position at which our laser line will begin (empty GameObject).
     public GameObject eye;
     public GameObject player;
+    public GameObject playerUI;
     public Transform gunEnd;
     // Used to determine how long we want the laser to remain visible in the
     // game view once the player has fired.
@@ -30,6 +32,7 @@ public class BossShootingController : MonoBehaviour
 
     private void Start()
     {
+        //playerPos = player.transform.position;
         laserLine = eye.GetComponent<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
         laserLine.material = color;
@@ -42,13 +45,17 @@ public class BossShootingController : MonoBehaviour
         if (coolDown < 0)
         {
             Shoot();
-            coolDown = 4f;
+            coolDown = 1f;
         }
-
+        //else if (Math.Abs(coolDown - 0.5f) < 0.01)
+        //{
+        //    playerPos = player.transform.position;
+        //}
     }
 
     private void Shoot()
     {
+        // Wait a few milliseconds, then shoot so the player is incentivized to keep moving
         nextFire = Time.time + fireRate;
         StartCoroutine(ShotEffect());
         Vector3 rayOrigin = gunEnd.transform.position;
@@ -70,7 +77,7 @@ public class BossShootingController : MonoBehaviour
             // Cast the second point of our ray to be what we hit
             laserLine.SetPosition(1, hit.point);
 
-            PlayerDataUIController playerHealth = hit.collider.GetComponentsInChildren<PlayerDataUIController>()[0];
+            PlayerDataUIController playerHealth = playerUI.GetComponent<PlayerDataUIController>();
             // If there was a health script attached
             if (playerHealth != null)
             {
@@ -89,8 +96,6 @@ public class BossShootingController : MonoBehaviour
 
     private IEnumerator ShotEffect()
     {
-        // TODO: play gunshot audio
-
         laserLine.enabled = true;
 
         //  Causes our coroutine to wait for 0.7 seconds.
